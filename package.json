@@ -1,0 +1,27 @@
+{
+  "name": "mcp-glucose",
+  "version": "1.0.0",
+  "description": "MCP server for glucose data queries - connects to health-data-storage API",
+  "type": "module",
+  "main": "build/index.js",
+  "bin": {
+    "mcp-glucose": "build/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "start": "node build/index.js"
+  },
+  "keywords": ["mcp", "glucose", "health", "cgm"],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.4",
+    "axios": "^1.6.0",
+    "dotenv": "^16.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "typescript": "^5.3.3"
+  }
+}
