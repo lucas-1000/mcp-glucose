@@ -25,5 +25,5 @@ EXPOSE 8080
 # Set NODE_ENV
 ENV NODE_ENV=production
 
-# Start HTTP server (not stdio server)
-CMD ["node", "build/http-server.js"]
+# Start OAuth-enabled HTTP server
+CMD ["node", "build/http-server-oauth.js"]

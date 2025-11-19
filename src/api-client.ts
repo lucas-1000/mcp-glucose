@@ -17,17 +17,31 @@ export interface GlucoseStats {
 
 export class HealthDataAPI {
   private client: AxiosInstance;
-  private apiSecret: string;
+  private apiSecret?: string;
+  private accessToken?: string;
 
-  constructor(baseURL: string, apiSecret: string) {
-    this.apiSecret = apiSecret;
-    this.client = axios.create({
-      baseURL,
-      timeout: 30000,
-      headers: {
-        'X-API-Secret': apiSecret,
-      },
-    });
+  constructor(baseURL: string, authToken: string, isBearer: boolean = false) {
+    if (isBearer) {
+      // OAuth Bearer token authentication
+      this.accessToken = authToken;
+      this.client = axios.create({
+        baseURL,
+        timeout: 30000,
+        headers: {
+          'Authorization': `Bearer ${authToken}`,
+        },
+      });
+    } else {
+      // Legacy API secret authentication
+      this.apiSecret = authToken;
+      this.client = axios.create({
+        baseURL,
+        timeout: 30000,
+        headers: {
+          'X-API-Secret': authToken,
+        },
+      });
+    }
   }
 
   /**
